@@ -1,0 +1,132 @@
+@mixin trim($numLines: null) {
+  @if $numLines != null {
+    display: -webkit-box;
+    -webkit-line-clamp: $numLines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @else {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+  }
+}
+
+@mixin box-shadow($x-axis: 0, $y-axis: 0, $blur: 10px, $color: rgba(0,0,0,0.2)) {
+  box-shadow: $x-axis $y-axis $blur $color !important;
+  -webkit-box-shadow: $x-axis $y-axis $blur $color !important;
+}
+
+@mixin padding($top, $right, $bottom, $left) {
+  padding: {
+    top: $top;
+    bottom: $bottom;
+    right: $right;
+    left: $left;
+  }
+}
+
+@mixin btn($backgroundColor, $color, $borderRadius, $borderColor, $borderWidth) {
+  background-color: $backgroundColor;
+  color: $color;
+  border-radius: $borderRadius;
+  border: $borderWidth solid $borderColor;
+}
+
+@mixin scrollbars($size, $foreground-color, $background-color: white) {
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $foreground-color;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $background-color;
+  }
+
+  & {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}
+
+@mixin colors($colors) {
+  @each $name, $hex in $colors {
+    .svg-#{$name} {
+      fill: #{$hex};
+    }
+    .hover-#{$name}#{":hover"} * {
+      color: #{$hex} !important;
+    }
+    .hover-#{$name}#{":hover"} {
+      svg {
+        fill: #{$hex} !important;
+      }
+    }
+  }
+}
+
+@mixin d-flex-vert-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin d-flex-hr-center {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin d-flex-center {
+  @include d-flex-vert-center;
+
+  justify-content: center;
+}
+
+@mixin flex-inline-center {
+  @include d-flex-center;
+
+  display: inline-flex;
+}
+
+@mixin flex-inline-vert-center {
+  @include d-flex-vert-center;
+
+  display: inline-flex;
+}
+
+@mixin cover-background {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@mixin absolute-vert-center {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin absolute-horiz-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin absolute-center {
+  @include absolute-vert-center;
+  @include absolute-horiz-center;
+
+  transform: translate(-50%, -50%);
+}
+
+@mixin absolute-cover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}

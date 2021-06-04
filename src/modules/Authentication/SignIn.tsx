@@ -1,13 +1,13 @@
 import { PureComponent } from 'react';
 
-class Temp extends PureComponent {
+class SignIn extends PureComponent {
   render() {
     return (
       <div>
-        Temp
+        Sign in
       </div>
     );
   }
 }
 
-export { Temp };
+export { SignIn };
