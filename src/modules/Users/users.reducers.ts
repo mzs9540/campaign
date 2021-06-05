@@ -1,8 +1,6 @@
 import { USER, SIGN_OUT } from '../Authentication/actions';
 
-import { User } from 'API/interfaces';
-
-const initialState: User = {
+const initialState = {
   id: null,
   fullName: null,
   bio: null,

@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 import * as _ from 'lodash';
 
-import { signOut } from '../modules/Authentication/authentication.actions';
-import { AuthenticationAPI } from '../API';
+import { signOut } from 'modules/Authentication/authentication.actions';
+import { AuthenticationAPI } from 'API';
 
 function getFirstName(username: string): string | undefined {
   if (!username) return undefined;

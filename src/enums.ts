@@ -8,3 +8,15 @@ export enum PageStatus {
   Submitted,
   Error,
 }
+
+export enum CampaignStatus {
+  Active = 'ACTIVE',
+  Expired = 'EXPIRED',
+  Paused = 'PAUSED',
+}
+
+export enum CampaignType {
+  Message = 'MESSAGE',
+  Email = 'Email',
+  PushNotification = 'PUSH_NOTIFICATION',
+}
