@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Alert } from 'react-bootstrap';
 
 import { Verify } from './Verify';
-import { signIn } from './authentication.actions';
+import { user } from './authentication.actions';
 
 import { AuthenticationAPI } from 'API';
 import { PageStatus } from 'enums';
@@ -65,7 +65,9 @@ class SignIn extends React.Component<InjectedFormProps<Props> & Props, State> {
       return Promise.resolve()
         .then(() => this.setState({ status: PageStatus.Submitting }))
         .then(() => auth.signIn(otp, values.phone))
-        .then((userDetails) => this.props.signIn(userDetails))
+        .then((userDetails) => {
+          return this.props.user(userDetails);
+        })
         .then(() => this.historyCallback())
         .catch((error) => {
           this.setState({ status: PageStatus.Error, error: error.message });
@@ -239,7 +241,7 @@ const mapStateToProps = (state) => {
   return { phone };
 };
 
-const connector = connect(mapStateToProps, { signIn });
+const connector = connect(mapStateToProps, { user });
 
 const SignInWithState = connector(SignInWithRedux);
 

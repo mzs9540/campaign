@@ -1,21 +1,27 @@
-import { SIGN_IN, SIGN_OUT } from '../Authentication/actions';
+import { USER, SIGN_OUT } from '../Authentication/actions';
 
-import { UserState } from './interfaces';
+import { User } from 'API/interfaces';
 
-const initialState: UserState = {
+const initialState: User = {
+  id: null,
   fullName: null,
   bio: null,
+  phone: null,
+  email: null,
   profileImageUrl: null,
 };
 
-export const authenticationReducers = (state = initialState, action) => {
+export const userReducers = (state = initialState, action) => {
   switch (action.type) {
-    case SIGN_IN: {
+    case USER: {
       return {
         ...initialState,
-        fullName: action.fullName,
-        bio: action.bio,
-        profileImageUrl: action.profileImageUrl,
+        id: action.user.id,
+        fullName: action.user.fullName,
+        bio: action.user.bio,
+        phone: action.user.phone,
+        email: action.user.email,
+        profileImageUrl: action.user.profileImageUrl,
       };
     }
     case SIGN_OUT: {

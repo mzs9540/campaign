@@ -1,2 +1,2 @@
-export const SIGN_IN = 'AUTHENTICATION/SIGN_IN';
+export const USER = 'AUTHENTICATION/USER';
 export const SIGN_OUT = 'AUTHENTICATION/SIGN_OUT';

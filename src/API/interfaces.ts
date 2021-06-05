@@ -1,10 +1,10 @@
 import { UserId } from 'interfaces';
 
 export type User = {
-  id: UserId,
-  fullName: string,
-  phone: string,
-  email: string,
+  id: UserId | null,
+  fullName: string | null,
+  phone: string | null,
+  email: string | null,
   bio: string | null,
-  profileImageUrl: string,
+  profileImageUrl: string | null,
 };

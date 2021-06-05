@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 import * as _ from 'lodash';
 
-function getFirstName(username: string): string | undefined {
+function getFirstName(username: string | undefined): string | undefined {
+  if (!username) return undefined;
   const nameWords = username.split(' ');
 
   return _.first(nameWords);
@@ -89,8 +90,8 @@ class ProfileDropdown extends PureComponent<Props, any> {
 }
 
 const mapStateToProps = (state) => ({
-  username: state.users.user.fullName,
-  pictureUrl: state.users.user.pictureUrl,
+  username: state.users.fullName,
+  pictureUrl: state.users.pictureUrl,
 });
 
 const ProfileDropdownWithState = connect(

@@ -2,8 +2,8 @@ import * as authActions from './actions';
 
 import { User } from 'API/interfaces';
 
-export const signIn = (userDetails: User | null) => ({
-  type: authActions.SIGN_IN,
+export const user = (userDetails: User | null) => ({
+  type: authActions.USER,
   user: userDetails,
 });
 

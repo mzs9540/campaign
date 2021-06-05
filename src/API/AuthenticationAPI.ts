@@ -8,14 +8,15 @@ import { User } from './interfaces';
 export class AuthenticationAPI {
   store = new AppStorage({ prefix: 'users' });
 
-  signIn(phone: string, otp: string): Promise<User | never> {
+  signIn(otp: string, phone: string): Promise<User | never> {
     const phoneWithCode = AuthenticationAPI.prependIndiaCountryCode(phone);
     return new Promise((resolve, reject) => {
       const users = this.store.getValue<User[]>('users');
       if (!users?.length) {
-        return reject(new Error('No users.'));
+        return reject(new Error('No user found, Please do signup.'));
       }
       const index = users.findIndex((user) => {
+        console.log(user.phone, phoneWithCode);
         return user.phone === phoneWithCode;
       });
 
@@ -30,20 +31,37 @@ export class AuthenticationAPI {
     });
   }
 
-  signUp(otp: string, values: any): Promise<User | never> {
+  signUp(otp: string, values: {
+    phone: string,
+    email: string,
+    name: string,
+  }): Promise<User | never> {
     return new Promise((resolve, reject) => {
       if (otp !== '1111') {
         return reject(new Error('Wrong OTP provided.'));
+      }
+      const phoneWithCode = AuthenticationAPI.prependIndiaCountryCode(
+        values.phone,
+      );
+      const users = this.store.getValue<User[]>('users') || [];
+      const index = users.findIndex((user) => {
+        return user.phone === phoneWithCode || user.email === values.email;
+      });
+
+      if (index >= 0) {
+        return reject(new Error('Phone/Email already exist please login.'));
       }
       const user = {
         id: uuid() as UserId,
         phone: values.phone,
         fullName: values.name,
         email: values.email,
-        bio: values?.bio,
+        bio: '',
         profileImageUrl: 'https://picsum.photos/200/300?random=1200',
       };
-      user.phone = AuthenticationAPI.prependIndiaCountryCode(values.phone);
+      user.phone = phoneWithCode;
+      users.push(user);
+      this.store.setValue<User[]>('users', users);
       this.store.setValue<User>('user', user);
       return resolve(user);
     });

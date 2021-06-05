@@ -21,7 +21,6 @@ const rootPersistConfig = {
   key: 'root',
   storage,
   transforms: [blacklistTransform],
-  blacklist: ['examCategories'],
   version: 1,
 };
 
