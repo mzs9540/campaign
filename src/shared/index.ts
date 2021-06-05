@@ -7,3 +7,5 @@ export { SearchBar } from './SearchBar';
 export { SearchBarMobile } from './SearchBarMobile';
 export { Show } from './Show';
 export { SnackBar } from './SnackBar';
+export { Spinner } from './Spinner';
+export { Timer } from './Timer';

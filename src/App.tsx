@@ -1,6 +1,8 @@
 import { PureComponent } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import './sass/main.scss';
+
 import { PrivateRoute } from './PrivateRoute';
 
 import { Router as CampaignRouter } from 'modules/Campaigns';
@@ -16,7 +18,7 @@ class App extends PureComponent {
 
           <PrivateRoute path="/campaigns" component={CampaignRouter} />
 
-          <PrivateRoute path="/" component={HomeRouter} />
+          <Route path="/" component={HomeRouter} />
         </Switch>
       </Router>
     );

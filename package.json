@@ -28,6 +28,7 @@
     "@types/react": "17.0.3",
     "@types/react-dom": "17.0.3",
     "@types/react-router-dom": "5.1.7",
+    "@types/redux-form": "8.3.1",
     "@typescript-eslint/eslint-plugin": "4.19.0",
     "@typescript-eslint/parser": "4.19.0",
     "axios": "0.21.1",
@@ -52,6 +53,7 @@
     "redux-thunk": "2.3.0",
     "spa-server": "1.0.0",
     "typescript": "4.2.3",
+    "uuidv4": "6.2.8",
     "web-vitals": "2.0.0"
   },
   "devDependencies": {
