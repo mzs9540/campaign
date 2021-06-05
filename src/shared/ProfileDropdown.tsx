@@ -4,22 +4,37 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 import * as _ from 'lodash';
 
-function getFirstName(username: string | undefined): string | undefined {
+import { signOut } from '../modules/Authentication/authentication.actions';
+import { AuthenticationAPI } from '../API';
+
+function getFirstName(username: string): string | undefined {
   if (!username) return undefined;
   const nameWords = username.split(' ');
 
   return _.first(nameWords);
 }
 
-type Props = {
+type DispatchProps = {
+  signOut: () => any;
+};
+
+type PropsFromRedux = {
   username: string,
   pictureUrl: string,
 };
 
+type Props = PropsFromRedux & DispatchProps;
+
 class ProfileDropdown extends PureComponent<Props, any> {
   // eslint-disable-next-line class-methods-use-this
   onLogout() {
-    console.log('logged out');
+    const auth = new AuthenticationAPI();
+    return Promise.resolve()
+      .then(() => auth.signOut())
+      .then(() => this.props.signOut())
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   render() {
@@ -62,19 +77,7 @@ class ProfileDropdown extends PureComponent<Props, any> {
 
           <Dropdown.Item
             className="d-flex align-items-center"
-            href="#settings"
-            onClick={(e) => e.preventDefault()}
-          >
-            <FontAwesomeIcon
-              className="mr-2"
-              icon={['fas', 'cog']}
-            />
-            Settings
-          </Dropdown.Item>
-
-          <Dropdown.Item
-            className="d-flex align-items-center"
-            href="#hindi"
+            href="#"
             onClick={() => this.onLogout()}
           >
             <FontAwesomeIcon
@@ -91,11 +94,11 @@ class ProfileDropdown extends PureComponent<Props, any> {
 
 const mapStateToProps = (state) => ({
   username: state.users.fullName,
-  pictureUrl: state.users.pictureUrl,
+  pictureUrl: state.users.profileImageUrl,
 });
 
 const ProfileDropdownWithState = connect(
-  mapStateToProps,
+  mapStateToProps, { signOut },
 )(ProfileDropdown);
 
 export { ProfileDropdownWithState as ProfileDropdown };

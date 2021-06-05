@@ -67,6 +67,17 @@ export class AuthenticationAPI {
     });
   }
 
+  signOut(): Promise<boolean | never> {
+    try {
+      return new Promise((resolve) => {
+        this.store.clearValue('user');
+        return resolve(true);
+      });
+    } catch {
+      return Promise.reject(new Error('Something went wrong.'));
+    }
+  }
+
   static prependIndiaCountryCode(phone) {
     return `91${phone}`;
   }
