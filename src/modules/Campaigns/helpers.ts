@@ -13,12 +13,16 @@ export function validateForm(values: FormData) {
     errors.title = 'Required';
   } else if (values.title.length > 150) {
     errors.title = 'Must be less than 150 characters';
+  } else if (values.title.length < 10) {
+    errors.title = 'Must be greater than 10 characters';
   }
   if (!values.type) {
     errors.type = 'Required';
   }
   if (!!values.description && values.description.length > 500) {
     errors.description = 'Must be less than 500 characters';
+  } else if (!!values.description && values.description.length < 50) {
+    errors.description = 'Must be greater than 50 characters';
   }
   if (!values.startsAt) {
     errors.startsAt = 'Required';

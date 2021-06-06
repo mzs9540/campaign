@@ -1,3 +1,6 @@
+import { RouteComponentProps } from 'react-router';
+import * as _ from 'lodash';
+
 export function secondsToTimeAsString(secs: number | undefined): string {
   if (!secs) return '0s';
   const hours = Math.floor(secs / (60 * 60))
@@ -15,4 +18,12 @@ export function secondsToTimeAsString(secs: number | undefined): string {
     : '';
 
   return `${hours} ${minutes} ${seconds}`;
+}
+
+export function getParam<K = string>(
+  obj: { props: RouteComponentProps },
+  name: string,
+  defaultValue: any = null,
+): K | null {
+  return _.get(obj.props, ['match', 'params', name], defaultValue);
 }

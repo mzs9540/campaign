@@ -56,8 +56,8 @@ export class CampaignAPI {
     title: string,
     description: string | null,
     type: CampaignType,
-    startsAt: Moment,
-    endsAt: Moment,
+    startsAt: string,
+    endsAt: string,
     isActive?: boolean
   }): Promise<Campaign | never> {
     let user: User;
@@ -101,6 +101,8 @@ export class CampaignAPI {
       title: string,
       description: string | null,
       type: CampaignType,
+      startsAt: string,
+      endsAt: string,
     },
   ): Promise<Campaign | never> {
     return new Promise((resolve, reject) => {
@@ -119,13 +121,15 @@ export class CampaignAPI {
         const campaign: Campaign = {
           ...campaignOld,
           ...values,
+          startsAt: moment(values.startsAt).utc(),
+          endsAt: moment(values.endsAt).utc(),
           updatedAt: moment.utc(),
         };
         campaigns[index] = campaign;
         this.store?.setValue<Campaign[]>('campaigns', campaigns);
         return resolve(campaign);
-      } catch {
-        return reject(new Error(lang.unknownError));
+      } catch (err) {
+        return reject(err);
       }
     });
   }
@@ -154,8 +158,11 @@ export class CampaignAPI {
     description: string | null,
     type: CampaignType,
   }): boolean {
-    return values.title.length <= 150
-      && (!!values.description ? values.description?.length <= 500 : true)
-      && values.type in CampaignType;
+    const { title, description } = values;
+    return title.length > 10
+      && title.length <= 150
+      && (!!description
+        ? (description.length <= 500 && description.length > 50)
+        : true);
   }
 }

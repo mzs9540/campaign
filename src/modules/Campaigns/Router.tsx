@@ -11,6 +11,13 @@ export function Router() {
 
   return (
     <Switch>
+      <Route exact path={`${path}/:campaignId/update`}>
+        <DocumentTitle title="Update Campaign" />
+        <BodyLayout>
+          <Form />
+        </BodyLayout>
+      </Route>
+
       <Route exact path={`${path}/create`}>
         <DocumentTitle title="Create Campaign" />
         <BodyLayout>

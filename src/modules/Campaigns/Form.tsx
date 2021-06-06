@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { InjectedFormProps, reduxForm } from 'redux-form';
-import { RouteComponentProps } from 'react-router';
+import { RouteComponentProps, withRouter } from 'react-router';
 import { Alert } from 'react-bootstrap';
 
 import './Form.scss';
@@ -8,44 +8,112 @@ import './Form.scss';
 import { FormData } from './interfaces';
 import { validateForm } from './helpers';
 
+import { CampaignId } from 'interfaces';
+import { lang } from 'lang';
+import { inputFormat } from 'utilities/dates';
+import { Campaign } from 'API/interfaces';
 import { CampaignAPI } from 'API/CampaignAPI';
 import { Show, Spinner } from 'shared';
 import {
   DateInput, Input, Select, Textarea,
 } from 'shared/Inputs';
 import { CampaignType, PageStatus } from 'enums';
+import { getParam } from 'utilities/helper';
 
-type Props = InjectedFormProps<FormData, any> & RouteComponentProps;
+type Props =
+    InjectedFormProps<FormData, any>
+    & RouteComponentProps<{ campaignId: string }>;
 
 type State = {
   status: PageStatus,
+  campaign: Campaign | null,
   error: string | null,
 };
 
 class Form extends Component<Props, State> {
+  campaign: CampaignAPI | null;
   constructor(props) {
     super(props);
     this.state = {
       status: PageStatus.None,
+      campaign: null,
       error: null,
     };
+
+    this.campaign = new CampaignAPI();
   }
 
-  async onSubmit(values) {
-    const campaign = new CampaignAPI();
-    try {
-      this.setState({ status: PageStatus.Submitting });
-      await campaign.createCampaign(values);
-      this.setState({ status: PageStatus.Submitted });
-    } catch (err) {
-      this.setState({ status: PageStatus.Error, error: err.message });
+  componentDidMount() {
+    const campaignId = getParam<CampaignId>(this, 'campaignId');
+    if (!!campaignId) {
+      this.fetchCampaign(campaignId).then(() => {
+        const { campaign } = this.state;
+        if (!campaign) return null;
+        const values: FormData = {
+          type: campaign.type,
+          title: campaign.title,
+          description: campaign.description,
+          startsAt: inputFormat(campaign.startsAt || null),
+          endsAt: inputFormat(campaign.endsAt || null),
+        };
+        return this.props.initialize(values);
+      }).catch((err) => {
+        this.setState({ error: err.message, status: PageStatus.Error });
+      });
     }
+  }
+
+  fetchCampaign(campaignId: CampaignId) {
+    return Promise.resolve()
+      .then(() => this.setState({ status: PageStatus.Loading }))
+      .then(() => {
+        try {
+          return this.campaign?.getCampaign(campaignId) || null;
+        } catch {
+          return Promise.reject(new Error(lang.unknownError));
+        }
+      })
+      .then((campaign) => {
+        this.setState({ campaign, status: PageStatus.Loaded });
+      })
+      .catch((err) => {
+        this.setState({ error: err.message, status: PageStatus.Error });
+      });
+  }
+
+  onSubmit(values) {
+    const campaignId = getParam<CampaignId>(this, 'campaignId');
+    if (!!campaignId) {
+      return this.updateCampaign(campaignId, values);
+    }
+    return this.createCampaign(values);
+  }
+
+  createCampaign(values) {
+    return Promise.resolve()
+      .then(() => this.setState({ status: PageStatus.Submitting }))
+      .then(() => this.campaign?.createCampaign(values))
+      .then(() => this.setState({ status: PageStatus.Submitted }))
+      .catch((err) => {
+        this.setState({ error: err.message, status: PageStatus.Error });
+      });
+  }
+
+  updateCampaign(campaignId: CampaignId, values) {
+    return Promise.resolve()
+      .then(() => this.setState({ status: PageStatus.Submitting }))
+      .then(() => this.campaign?.updateCampaign(campaignId, values))
+      .then(() => this.setState({ status: PageStatus.Submitted }))
+      .catch((err) => {
+        this.setState({ error: err.message, status: PageStatus.Error });
+      });
   }
 
   isShowForm(): boolean {
     return this.state.status === PageStatus.Error
         || this.state.status === PageStatus.None
         || this.state.status === PageStatus.Submitting
+        || this.state.status === PageStatus.Loaded
         || this.state.status === PageStatus.Submitted;
   }
 
@@ -99,7 +167,7 @@ class Form extends Component<Props, State> {
                       || this.props.pristine
                   }
                 >
-                  Create campaign
+                  Submit campaign
                 </button>
 
                 <Show when={this.state.status === PageStatus.Submitting}>
@@ -118,7 +186,7 @@ class Form extends Component<Props, State> {
                 show={this.state.status === PageStatus.Submitted}
                 variant="success"
               >
-                Campaign created successfully
+                Campaign submitted successfully
               </Alert>
             </form>
           </div>
@@ -133,4 +201,6 @@ const FormWithRedux = reduxForm<FormData, any>({
   validate: validateForm,
 })(Form);
 
-export { FormWithRedux as Form };
+const FormWithRouter = withRouter(FormWithRedux);
+
+export { FormWithRouter as Form };
