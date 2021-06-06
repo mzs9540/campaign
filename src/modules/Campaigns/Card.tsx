@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
 
 import './Card.scss';
-
-import { Link } from 'react-router-dom';
 
 import { CampaignStatus, CampaignType } from 'enums';
 import { Campaign } from 'API/interfaces';

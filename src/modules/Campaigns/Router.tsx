@@ -1,8 +1,11 @@
 import React from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
 
+import './Shared.scss';
+
 import { Form } from './Form';
 import { Campaigns } from './Campaigns';
+import { Details } from './Details';
 
 import { BodyLayout } from 'layouts';
 import { DocumentTitle } from 'shared';
@@ -23,6 +26,13 @@ export function Router() {
         <DocumentTitle title="Create Campaign" />
         <BodyLayout>
           <Form />
+        </BodyLayout>
+      </Route>
+
+      <Route exact path={`${path}/:campaignId`}>
+        <DocumentTitle title="Campaign details" />
+        <BodyLayout>
+          <Details />
         </BodyLayout>
       </Route>
 

@@ -5,6 +5,8 @@ import { Alert } from 'react-bootstrap';
 
 import './Form.scss';
 
+import moment from 'moment';
+
 import { FormData } from './interfaces';
 import { validateForm } from './helpers';
 
@@ -90,10 +92,21 @@ class Form extends Component<Props, State> {
   }
 
   createCampaign(values) {
+    const isAfter = moment().isAfter(values.startsAt, 'minutes');
+    if (isAfter) {
+      return this.setState({
+        status: PageStatus.Error,
+        error: 'Start date must be after today date-time.',
+      });
+    }
     return Promise.resolve()
       .then(() => this.setState({ status: PageStatus.Submitting }))
       .then(() => this.campaign?.createCampaign(values))
-      .then(() => this.setState({ status: PageStatus.Submitted }))
+      .then((campaign) => {
+        this.setState({ status: PageStatus.Submitted }, () => {
+          this.props.history.push(`/campaigns/${campaign?.id}`);
+        });
+      })
       .catch((err) => {
         this.setState({ error: err.message, status: PageStatus.Error });
       });
@@ -104,6 +117,7 @@ class Form extends Component<Props, State> {
       .then(() => this.setState({ status: PageStatus.Submitting }))
       .then(() => this.campaign?.updateCampaign(campaignId, values))
       .then(() => this.setState({ status: PageStatus.Submitted }))
+      .then(() => this.props.history.push(`/campaigns/${campaignId}`))
       .catch((err) => {
         this.setState({ error: err.message, status: PageStatus.Error });
       });
@@ -160,7 +174,7 @@ class Form extends Component<Props, State> {
               <div className="d-flex align-items-center mb-3">
                 <button
                   type="submit"
-                  className="btn turquoise-btn mr-4"
+                  className="btn turquoise-btn mr-3"
                   disabled={
                     this.props.submitting
                       || this.props.invalid
@@ -168,6 +182,14 @@ class Form extends Component<Props, State> {
                   }
                 >
                   Submit campaign
+                </button>
+
+                <button
+                  type="button"
+                  className="btn dark-btn mr-4"
+                  onClick={() => this.props.history.goBack()}
+                >
+                  Cancel
                 </button>
 
                 <Show when={this.state.status === PageStatus.Submitting}>

@@ -4,7 +4,6 @@ import { FormData } from './interfaces';
 
 export function validateForm(values: FormData) {
   const errors: any = {};
-  const isAfter = moment().isAfter(values.startsAt, 'minutes');
   const isValidEndsAt = moment(values.endsAt).isAfter(
     values.startsAt,
     'minutes',
@@ -26,8 +25,6 @@ export function validateForm(values: FormData) {
   }
   if (!values.startsAt) {
     errors.startsAt = 'Required';
-  } else if (isAfter) {
-    errors.startsAt = "Starts at must be after today's date time";
   }
   if (!values.endsAt) {
     errors.endsAt = 'Required';

@@ -3,21 +3,7 @@ import { Dropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { CampaignStatus, CampaignType } from 'enums';
-
-const TypesMap = {
-  PUSH_NOTIFICATION: 'Push notification',
-  MESSAGE: 'Message',
-  EMAIL: 'Email',
-  DEFAULT: 'All campaigns',
-};
-
-const StatusMap = {
-  EXPIRED: 'Expired',
-  UPCOMING: 'Upcoming',
-  ACTIVE: 'Active',
-  PAUSED: 'Paused',
-  DEFAULT: 'All campaigns',
-};
+import { StatusMap, TypesMap } from 'maps';
 
 type Props = {
   status: CampaignStatus | null,
@@ -42,7 +28,7 @@ class Filters extends PureComponent<Props, any> {
 
   render() {
     return (
-      <Dropdown className="campaigns-list-filters">
+      <Dropdown className="dropdown-menu-wrap">
         <Dropdown.Toggle id="dropdown-basic">
           {this.getTitle()}
           <FontAwesomeIcon
