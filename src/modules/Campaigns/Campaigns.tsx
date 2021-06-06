@@ -91,7 +91,7 @@ class Campaigns extends Component<any, State> {
 
         <Show when={this.state.status === PageStatus.Loaded}>
           <div className="campaigns-header-wrap">
-            <h4>Campaigns</h4>
+            <h3>Campaigns</h3>
 
             <div className="mr-4">
               <Filters
