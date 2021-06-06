@@ -243,6 +243,10 @@ class Home extends Component<Props, State> {
                   <Card key={campaign.id} campaign={campaign} />
                 ))
               }
+
+              <Alert show={!this.state.recentCampaigns.length} variant="info">
+                No campaign created yet.
+              </Alert>
             </div>
           </div>
         </Show>
