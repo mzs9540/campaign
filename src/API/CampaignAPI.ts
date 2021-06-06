@@ -18,7 +18,8 @@ export class CampaignAPI {
   }
 
   getCampaigns(params?: {
-    filter?: CampaignType,
+    type?: CampaignType,
+    status?: CampaignStatus,
     total?: number,
   }): Promise<Campaign[] | never> {
     return new Promise((resolve, reject) => {
@@ -28,9 +29,14 @@ export class CampaignAPI {
           return resolve([]);
         }
         campaigns = CampaignAPI.updateStatus(campaigns);
-        if (!!params?.filter) {
+        if (!!params?.type) {
           campaigns = campaigns.filter((campaign) => {
-            return campaign.type === params.filter;
+            return campaign.type === params.type;
+          });
+        }
+        if (!!params?.status) {
+          campaigns = campaigns.filter((campaign) => {
+            return campaign.status === params.status;
           });
         }
         if (!!params?.total) {

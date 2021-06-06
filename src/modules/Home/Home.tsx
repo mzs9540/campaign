@@ -52,9 +52,9 @@ class Home extends Component<Props, State> {
         .then(() => this.setState({ status: PageStatus.Loading }))
         .then(() => Promise.all([
           campaign.getCampaigns(),
-          campaign.getCampaigns({ filter: CampaignType.Message }),
-          campaign.getCampaigns({ filter: CampaignType.Email }),
-          campaign.getCampaigns({ filter: CampaignType.PushNotification }),
+          campaign.getCampaigns({ type: CampaignType.Message }),
+          campaign.getCampaigns({ type: CampaignType.Email }),
+          campaign.getCampaigns({ type: CampaignType.PushNotification }),
           campaign.getCampaigns({ total: 10 }),
         ]))
         .then(([
@@ -247,7 +247,7 @@ class Home extends Component<Props, State> {
             <div className="campaigns-row">
               {
                 this.state.recentCampaigns.map((campaign) => (
-                  <Card campaign={campaign} />
+                  <Card key={campaign.id} campaign={campaign} />
                 ))
               }
             </div>

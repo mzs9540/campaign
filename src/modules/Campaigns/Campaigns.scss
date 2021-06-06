@@ -1,0 +1,36 @@
+@import 'src/sass/variables';
+@import 'src/sass/mixins';
+
+
+.all-campaigns-wrap {
+  .campaigns-header-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .campaigns-list-filters {
+    float: right;
+    display: inline-block;
+    margin-left: auto;
+    z-index: 10;
+
+    button {
+      @include btn($white_color, $dark-black-color, 4px, $dark-black-color, 1px);
+
+      font-size: 13px;
+      line-height: normal;
+      font-weight: 500;
+      padding: 8px 10px;
+      margin-left: 10px;
+    }
+
+    .dropdown-menu {
+      a {
+        font-size: 12px;
+      }
+    }
+  }
+}

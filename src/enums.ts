@@ -18,6 +18,6 @@ export enum CampaignStatus {
 
 export enum CampaignType {
   Message = 'MESSAGE',
-  Email = 'Email',
+  Email = 'EMAIL',
   PushNotification = 'PUSH_NOTIFICATION',
 }
