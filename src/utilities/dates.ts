@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment, { Moment } from 'moment';
 
 const TIME_FORMAT = 'hh:mm A';
 const DATE_FORMAT_WITHOUT_TIME = 'YYYY-MM-DD';
@@ -25,7 +25,7 @@ export function utcToLocalOnlyDate(
 }
 
 export function utcToLocalWithoutTime(
-  date: string | null,
+  date: Moment | string | null,
   defaultValue = 'N/A',
 ): string {
   return moment(date).isValid()

@@ -11,6 +11,7 @@ export enum PageStatus {
 
 export enum CampaignStatus {
   Active = 'ACTIVE',
+  Upcoming = 'Upcoming',
   Expired = 'EXPIRED',
   Paused = 'PAUSED',
 }

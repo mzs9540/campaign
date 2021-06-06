@@ -1,5 +1,5 @@
 import { uuid } from 'uuidv4';
-import moment, { Moment } from 'moment';
+import moment from 'moment';
 
 import { lang } from '../lang';
 
@@ -17,12 +17,27 @@ export class CampaignAPI {
     this.store = new AppStorage({ prefix: 'campaigns' });
   }
 
-  getCampaigns(): Promise<Campaign[] | never> {
+  getCampaigns(params?: {
+    filter?: CampaignType,
+    total?: number,
+  }): Promise<Campaign[] | never> {
     return new Promise((resolve, reject) => {
       try {
-        const campaigns = this.store?.getValue<Campaign[]>('campaigns');
+        let campaigns = this.store?.getValue<Campaign[]>('campaigns');
         if (!Array.isArray(campaigns)) {
           return resolve([]);
+        }
+        campaigns = CampaignAPI.updateStatus(campaigns);
+        if (!!params?.filter) {
+          campaigns = campaigns.filter((campaign) => {
+            return campaign.type === params.filter;
+          });
+        }
+        if (!!params?.total) {
+          const index = campaigns.length > params.total
+            ? params.total
+            : campaigns.length;
+          campaigns = campaigns.slice(index);
         }
         return resolve(campaigns);
       } catch {
@@ -153,6 +168,36 @@ export class CampaignAPI {
     });
   }
 
+  updateCampaignStatus(
+    campaignId: CampaignId,
+    status: CampaignStatus,
+  ): Promise<Campaign | never> {
+    return new Promise((resolve, reject) => {
+      try {
+        if (!(status in CampaignStatus)) {
+          return reject(new Error(lang.invalidCampaign));
+        }
+        const campaigns = this.store?.getValue<Campaign[]>('campaigns') || [];
+        const index = campaigns.findIndex((campaign) => {
+          return campaign.id === campaignId;
+        });
+        if (index < 0) {
+          return reject(new Error(lang.noCampaign));
+        }
+        const campaignOld = campaigns[index];
+        const campaign: Campaign = {
+          ...campaignOld,
+          status,
+        };
+        campaigns[index] = campaign;
+        this.store?.setValue<Campaign[]>('campaigns', campaigns);
+        return resolve(campaign);
+      } catch (err) {
+        return reject(err);
+      }
+    });
+  }
+
   static validateCampaign(values: {
     title: string,
     description: string | null,
@@ -164,5 +209,51 @@ export class CampaignAPI {
       && (!!description
         ? (description.length <= 500 && description.length > 50)
         : true);
+  }
+
+  static updateStatus(campaignsIn: Campaign[]): Campaign[] {
+    if (!campaignsIn?.length) return campaignsIn;
+    return campaignsIn.map((campaign) => {
+      const { startsAt, endsAt } = campaign;
+      const isUpcoming = moment(moment().utc()).isBefore(
+        moment(startsAt).utc(),
+        'minutes',
+      );
+      const isActive = moment(moment().utc()).isBetween(
+        startsAt,
+        endsAt,
+        'minutes',
+      );
+      const isExpired = moment(moment().utc()).isAfter(endsAt);
+      if (campaign.isActive && isActive) {
+        return {
+          ...campaign,
+          isActive: true,
+          status: CampaignStatus.Active,
+        };
+      }
+      if (!campaign.isActive && isActive) {
+        return {
+          ...campaign,
+          isActive: false,
+          status: CampaignStatus.Paused,
+        };
+      }
+      if (isUpcoming) {
+        return {
+          ...campaign,
+          isActive: true,
+          status: CampaignStatus.Upcoming,
+        };
+      }
+      if (isExpired) {
+        return {
+          ...campaign,
+          isActive: false,
+          status: CampaignStatus.Expired,
+        };
+      }
+      return campaign;
+    });
   }
 }
