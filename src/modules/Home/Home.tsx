@@ -10,7 +10,7 @@ import { Card } from '../Campaigns/Card';
 
 import { CampaignAPI } from 'API/CampaignAPI';
 import { Show, Spinner } from 'shared';
-import { DoughnutChart, LineChart } from 'shared/Charts';
+import { DoughnutChart } from 'shared/Charts';
 import { CampaignStatus, CampaignType, PageStatus } from 'enums';
 import { Campaign } from 'API/interfaces';
 import { UserId } from 'interfaces';

@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react';
 import { Alert } from 'react-bootstrap';
 import { RouteComponentProps, withRouter } from 'react-router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './Details.scss';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { Header } from './Header';
 import { Status } from './Status';

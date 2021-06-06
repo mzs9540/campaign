@@ -1,14 +1,11 @@
 import React from 'react';
 import { Navbar, Carousel } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './AuthenticationLayout.scss';
 
 import eduImg1 from 'images/edu1.jpg';
 import eduImg2 from 'images/edu2.jpg';
 import eduImg3 from 'images/edu3.jpg';
-import eduImg4 from 'images/edu4.png';
 import eduLogo from 'images/edu-logo.svg';
 
 export function AuthenticationLayout(props: {
