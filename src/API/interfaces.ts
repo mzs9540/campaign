@@ -19,6 +19,8 @@ export type Campaign = {
   isActive: boolean,
   status: CampaignStatus,
   type: CampaignType,
+  startsAt: Moment,
+  endsAt: Moment,
   createdAt: Moment,
   updatedAt: Moment | null,
   createdBy: UserId,

@@ -1,0 +1,32 @@
+@import 'src/sass/variables';
+@import 'src/sass/mixins';
+
+.campaigns-create-wrap {
+  .campaigns-form {
+    z-index: 0 !important;
+    position: relative;
+
+    form {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+
+      .form-control {
+        background-color: transparent;
+      }
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      right: -150px;
+      top: 0;
+      background: url('/images/email_campaign.svg') no-repeat;
+      background-size: cover;
+      width: 550px;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.2;
+    }
+  }
+}

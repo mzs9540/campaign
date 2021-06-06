@@ -1,10 +1,11 @@
 import { uuid } from 'uuidv4';
-import moment from 'moment';
+import moment, { Moment } from 'moment';
 
-import { Campaign } from './interfaces';
+import { lang } from '../lang';
+
+import { Campaign, User } from './interfaces';
 import { AuthenticationAPI } from './AuthenticationAPI';
 
-import { lang } from 'lang';
 import { CampaignStatus, CampaignType } from 'enums';
 import { AppStorage } from 'AppStorage';
 import { CampaignId } from 'interfaces';
@@ -51,32 +52,43 @@ export class CampaignAPI {
     });
   }
 
-  createCampaign(values: {
+  async createCampaign(values: {
     title: string,
     description: string | null,
     type: CampaignType,
+    startsAt: Moment,
+    endsAt: Moment,
+    isActive?: boolean
   }): Promise<Campaign | never> {
+    let user: User;
+    try {
+      const auth = new AuthenticationAPI();
+      user = await auth.getUser();
+      if (!user) throw new Error(lang.unknownError);
+    } catch (err) {
+      return Promise.reject(err);
+    }
+
     return new Promise((resolve, reject) => {
       try {
         if (!CampaignAPI.validateCampaign(values)) {
           return reject(new Error(lang.invalidCampaign));
         }
-        const auth = new AuthenticationAPI();
-        return auth.getUser().then((user) => {
-          const campaigns = this.store?.getValue<Campaign[]>('campaigns') || [];
-          const campaign: Campaign = {
-            ...values,
-            id: uuid() as CampaignId,
-            createdAt: moment.utc(),
-            updatedAt: null,
-            createdBy: user.id,
-            isActive: true,
-            status: CampaignStatus.Active,
-          };
-          campaigns.push(campaign);
-          this.store?.setValue<Campaign[]>('campaigns', campaigns);
-          return resolve(campaign);
-        });
+        const campaigns = this.store?.getValue<Campaign[]>('campaigns') || [];
+        const campaign: Campaign = {
+          ...values,
+          id: uuid() as CampaignId,
+          createdAt: moment.utc(),
+          startsAt: moment(values.startsAt).utc(),
+          endsAt: moment(values.endsAt).utc(),
+          updatedAt: null,
+          createdBy: user.id,
+          isActive: values.isActive || true,
+          status: CampaignStatus.Active,
+        };
+        campaigns.push(campaign);
+        this.store?.setValue<Campaign[]>('campaigns', campaigns);
+        return resolve(campaign);
       } catch {
         return reject(new Error(lang.unknownError));
       }

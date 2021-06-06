@@ -1,10 +1,10 @@
 import { uuid } from 'uuidv4';
 
-import { User } from './interfaces';
+import { UserId } from '../interfaces';
+import { AppStorage } from '../AppStorage';
+import { lang } from '../lang';
 
-import { AppStorage } from 'AppStorage';
-import { UserId } from 'interfaces';
-import { lang } from 'lang';
+import { User } from './interfaces';
 
 export class AuthenticationAPI {
   store = new AppStorage({ prefix: 'users' });
@@ -18,7 +18,6 @@ export class AuthenticationAPI {
           return reject(new Error('No user found, Please do signup.'));
         }
         const index = users.findIndex((user) => {
-          console.log(user.phone, phoneWithCode);
           return user.phone === phoneWithCode;
         });
 
@@ -29,6 +28,7 @@ export class AuthenticationAPI {
         if (otp !== '1111') {
           return reject(new Error('Wrong OTP provided.'));
         }
+        this.store?.setValue<User>('user', user);
         return resolve(user);
       } catch {
         return reject(new Error(lang.unknownError));
