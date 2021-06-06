@@ -29,6 +29,19 @@
     @include trim(2);
   }
 
+  .campaign-type {
+    font-size: 10px;
+    padding: 2px 6px;
+    font-weight: 500;
+    line-height: normal;
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    background-color: $turquoise-color;
+    border-radius: 3px;
+    color: white;
+  }
+
   .custom-badge {
     font-size: 10px;
     padding: 2px 6px;
@@ -59,30 +72,60 @@
     }
   }
 
-  .update-wrap {
-    @include d-flex-vert-center;
+  .custom-ribbon {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: -15px;
+    top: 6px;
+    height: 25px;
 
-    justify-content: space-between;
-  }
-
-  .new-price {
-    font-size: 15px;
-    font-weight: 500;
-    color: #28a745;
-    margin: 0;
-
-    span {
-      color: $dark-black-color;
-      font-size: 13px;
+    > div {
+      width: 0;
+      height: 0;
+      left: 10px;
+      bottom: 38px;
+      border-left: 6px solid transparent;
     }
 
-    .old-price {
-      font-size: 12px;
-      opacity: 0.5;
+    span {
+      color: $white-color;
+      padding: 2px 12px;
+      font-size: 11px;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
       font-weight: 500;
-      text-decoration: line-through;
-      margin-left: 5px;
-      color: $dark-black-color;
+    }
+
+    &.expired,
+    &.paused,
+    &.upcoming,
+    &.active {
+      > div {
+        border-bottom: 3px solid rgb(125, 125, 125);
+      }
+
+      span {
+        background-color: rgb(125, 125, 125);
+      }
+    }
+  }
+
+  .update-wrap {
+    font-weight: 400;
+    font-size: 11px;
+
+    span {
+      font-weight: 500;
+    }
+  }
+
+  .user-wrap {
+    font-weight: 400;
+    font-size: 11px;
+
+    span {
+      font-weight: 500;
     }
   }
 

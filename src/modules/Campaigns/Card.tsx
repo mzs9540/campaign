@@ -2,24 +2,32 @@ import React, { PureComponent } from 'react';
 
 import './Card.scss';
 
-import { CampaignStatus } from 'enums';
+import { Link } from 'react-router-dom';
+
+import { CampaignStatus, CampaignType } from 'enums';
 import { Campaign } from 'API/interfaces';
 import campaignCard from 'images/campaign_card.svg';
 import calendar from 'images/calendar.svg';
 import { Show } from 'shared';
-import { utcToLocalWithoutTime } from 'utilities/dates';
+import { utcToLocalDateTime, utcToLocalWithoutTime } from 'utilities/dates';
 
 type Props = {
   campaign: Campaign | null,
 };
 
 export class Card extends PureComponent<Props, any> {
+  classNames() {
+    return this.props.campaign?.status === CampaignStatus.Expired
+      ? 'campaign-card expired'
+      : 'campaign-card';
+  }
+
   render() {
     const { campaign } = this.props;
     if (!campaign) return null;
 
     return (
-      <div className="campaign-card">
+      <div className={this.classNames()}>
         <img src={campaignCard} alt="test-series" />
         <div className="campaign-thumb">
           <img src={calendar} alt="calendar" />
@@ -38,8 +46,22 @@ export class Card extends PureComponent<Props, any> {
           {campaign.title}
         </h6>
 
+        <div className="campaign-type">
+          <Show when={campaign.type === CampaignType.PushNotification}>
+            Push Notifications
+          </Show>
+
+          <Show when={campaign.type === CampaignType.Message}>
+            Message
+          </Show>
+
+          <Show when={campaign.type === CampaignType.Email}>
+            Email
+          </Show>
+        </div>
+
         <Show when={campaign.status === CampaignStatus.Active}>
-          <div className="ml-2 custom-ribbon">
+          <div className="ml-2 custom-ribbon active">
             <div />
             <span>
               Active
@@ -48,7 +70,7 @@ export class Card extends PureComponent<Props, any> {
         </Show>
 
         <Show when={campaign.status === CampaignStatus.Upcoming}>
-          <div className="ml-2 custom-ribbon">
+          <div className="ml-2 custom-ribbon upcoming">
             <div />
             <span>
               Upcoming
@@ -57,7 +79,7 @@ export class Card extends PureComponent<Props, any> {
         </Show>
 
         <Show when={campaign.status === CampaignStatus.Paused}>
-          <div className="ml-2 custom-ribbon">
+          <div className="ml-2 custom-ribbon paused">
             <div />
             <span>Paused</span>
           </div>
@@ -70,8 +92,27 @@ export class Card extends PureComponent<Props, any> {
           </div>
         </Show>
 
-        <div className="update-wrap w-100">
-          Updated at: hulu
+        <div className="d-flex align-items-center justify-content-between">
+          <div>
+            <div className="update-wrap">
+              Updated at:
+              {' '}
+              <span>{utcToLocalDateTime(campaign.updatedAt)}</span>
+            </div>
+
+            <div className="user-wrap">
+              Created by:
+              {' '}
+              <span>{campaign.createdBy.name || 'N/A'}</span>
+            </div>
+          </div>
+
+          <Link
+            to={`/campaigns/${campaign.id}`}
+            className="btn btn-sm"
+          >
+            View
+          </Link>
         </div>
       </div>
     );

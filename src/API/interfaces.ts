@@ -23,5 +23,8 @@ export type Campaign = {
   endsAt: Moment,
   createdAt: Moment,
   updatedAt: Moment | null,
-  createdBy: UserId,
+  createdBy: {
+    id: UserId,
+    name: string,
+  },
 };

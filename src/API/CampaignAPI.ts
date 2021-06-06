@@ -37,7 +37,7 @@ export class CampaignAPI {
           const index = campaigns.length > params.total
             ? params.total
             : campaigns.length;
-          campaigns = campaigns.slice(index);
+          campaigns = campaigns.slice(0, index);
         }
         return resolve(campaigns);
       } catch {
@@ -97,7 +97,10 @@ export class CampaignAPI {
           startsAt: moment(values.startsAt).utc(),
           endsAt: moment(values.endsAt).utc(),
           updatedAt: null,
-          createdBy: user.id,
+          createdBy: {
+            id: user.id,
+            name: user.fullName,
+          },
           isActive: values.isActive || true,
           status: CampaignStatus.Active,
         };

@@ -7,7 +7,7 @@ const DATE = 'Do MMM';
 const DATE_FORMAT_INPUT_TAG = 'YYYY-MM-DDTHH:mm';
 
 export function utcToLocalDateTime(
-  date: moment.Moment | string | undefined,
+  date: moment.Moment | string | null,
   defaultValue = 'N/A',
 ): string {
   return moment(date).isValid()
