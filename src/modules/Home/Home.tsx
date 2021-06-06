@@ -55,7 +55,7 @@ class Home extends Component<Props, State> {
           campaign.getCampaigns({ type: CampaignType.Message }),
           campaign.getCampaigns({ type: CampaignType.Email }),
           campaign.getCampaigns({ type: CampaignType.PushNotification }),
-          campaign.getCampaigns({ total: 10 }),
+          campaign.getCampaigns({ total: 5 }),
         ]))
         .then(([
           campaigns,
@@ -64,7 +64,6 @@ class Home extends Component<Props, State> {
           pushNotificationCampaigns,
           recentCampaigns,
         ]) => {
-          console.log('recentCampaigns', recentCampaigns);
           this.setState({
             campaigns,
             messageCampaigns,

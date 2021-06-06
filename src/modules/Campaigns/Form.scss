@@ -30,3 +30,39 @@
     }
   }
 }
+
+@media (max-width: 1099px) {
+  .campaigns-create-wrap {
+    overflow-x: hidden;
+
+    .campaigns-form {
+      padding: 0 15px;
+
+      &:after {
+        width: 350px;
+        height: 335px;
+        opacity: 0.1;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 310px) and (max-width: 767px) {
+  .campaigns-create-wrap {
+    .btn {
+      white-space: nowrap;
+    }
+
+    .campaigns-form {
+      padding: 0;
+      width: 100%;
+      height: 100%;
+
+      &:after {
+        width: 100%;
+        height: 100%;
+        opacity: 0.1;
+      }
+    }
+  }
+}
