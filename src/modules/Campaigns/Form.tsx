@@ -2,10 +2,9 @@ import { Component } from 'react';
 import { InjectedFormProps, reduxForm } from 'redux-form';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { Alert } from 'react-bootstrap';
+import moment from 'moment';
 
 import './Form.scss';
-
-import moment from 'moment';
 
 import { FormData } from './interfaces';
 import { validateForm } from './helpers';

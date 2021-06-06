@@ -31,10 +31,11 @@ export function AuthenticationLayout(props: {
               <span
                 className="d-lg-block turq_color h2 mb-0 font-weight-600"
               >
-                LMS
-                <h5 className="dark-black-color">Study Beyond The Classroom</h5>
+                Campaigns
+                <h5 className="dark-black-color">Creativity ahead</h5>
               </span>
             </Navbar.Brand>
+
             <div className="login-carousel w-100">
               <Carousel
                 interval={3000}
@@ -51,14 +52,16 @@ export function AuthenticationLayout(props: {
                     />
                     <div className="carousel_cntnt w-100 mt-30 text-center">
                       <h4 className="font-weight-bolder">
-                        Live online batches.
+                        Message campaign
                       </h4>
                       <p className="text-muted text-14">
-                        Join live batches & get access to online classrooms.
+                        Lorem Ipsum is simply dummy text of the printing
+                        and typesetting industry.
                       </p>
                     </div>
                   </div>
                 </Carousel.Item>
+
                 <Carousel.Item>
                   <div className="d-flex flex-column align-items-center">
                     <img
@@ -68,14 +71,16 @@ export function AuthenticationLayout(props: {
                     />
                     <div className="carousel_cntnt w-100 mt-30 text-center">
                       <h4 className="font-weight-bolder">
-                        Expert-led structured courses.
+                        Push notifications campaign.
                       </h4>
                       <p className="text-muted text-14">
-                        Learn On Your Schedule. Study any topic, anytime.
+                        Lorem Ipsum is simply dummy text of the printing
+                        and typesetting industry.
                       </p>
                     </div>
                   </div>
                 </Carousel.Item>
+
                 <Carousel.Item>
                   <div className="d-flex flex-column align-items-center">
                     <img
@@ -85,60 +90,16 @@ export function AuthenticationLayout(props: {
                     />
                     <div className="carousel_cntnt w-100 mt-30 text-center">
                       <h4 className="font-weight-bolder">
-                        Adaptive Practice.
+                        Email campaign.
                       </h4>
                       <p className="text-muted text-14">
-                        Do practice specific to your needs & skills,
-                        and clear your concepts.
-                      </p>
-                    </div>
-                  </div>
-                </Carousel.Item>
-                <Carousel.Item>
-                  <div className="d-flex flex-column align-items-center">
-                    <img
-                      className="d-block w-60"
-                      src={eduImg4}
-                      alt="First slide"
-                    />
-                    <div className="carousel_cntnt w-100 mt-30 text-center">
-                      <h4 className="font-weight-bolder">
-                        Adaptive Practice.
-                      </h4>
-                      <p className="text-muted text-14">
-                        Do practice specific to your needs & skills,
-                        and clear your concepts.
+                        Lorem Ipsum is simply dummy text of the printing
+                        and typesetting industry.
                       </p>
                     </div>
                   </div>
                 </Carousel.Item>
               </Carousel>
-            </div>
-            <div className="w-100 mt-70 text-center">
-              <h3>Connect on Social Platforms</h3>
-              {/* eslint-disable-next-line max-len */}
-              <ul className="list-unstyled d-flex justify-content-center social-icons mt-20 mb-0">
-                <li>
-                  <Link to="/">
-                    <FontAwesomeIcon icon={['fab', 'facebook-f']} />
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/">
-                    <FontAwesomeIcon icon={['fab', 'youtube']} />
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/">
-                    <FontAwesomeIcon icon={['fab', 'instagram']} />
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/">
-                    <FontAwesomeIcon icon={['fab', 'linkedin-in']} />
-                  </Link>
-                </li>
-              </ul>
             </div>
           </div>
           <div className="login-col login-col-right col-lg-6 col-md-7 col-12">

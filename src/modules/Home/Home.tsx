@@ -111,7 +111,7 @@ class Home extends Component<Props, State> {
         <Show when={this.state.status === PageStatus.Loaded}>
           <h2 className="mb-3">Campaign Dashboard</h2>
 
-          <div className="summary-wrap">
+          <div className="summary-wrap mb-4">
             <div className="summary-box">
               <h5>
                 Campaign types
@@ -227,12 +227,6 @@ class Home extends Component<Props, State> {
                 </div>
               </div>
             </div>
-          </div>
-
-          <div className="campaigns-stats-wrap">
-            <h4>Compare With Others</h4>
-            <p>Demonstrate your performance with respect to others.</p>
-            <LineChart />
           </div>
 
           <div className="campaigns-wrap">

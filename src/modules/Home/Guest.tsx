@@ -62,7 +62,7 @@ export class Guest extends PureComponent<any, any> {
                     className={'d-none d-lg-block turq_color h2 mb-0'
                       + ' font-weight-600'}
                   >
-                    LMS
+                    Campaigns
                   </span>
                 </Navbar.Brand>
                 <Nav className="ml-auto d-lg-flex">
@@ -91,6 +91,7 @@ export class Guest extends PureComponent<any, any> {
               </div>
             </div>
           </header>
+
           <section className="main-banner">
             <div className="banner-content">
               <div className="container">
@@ -98,14 +99,18 @@ export class Guest extends PureComponent<any, any> {
                   <div className="col-lg-6">
                     <div className="text-container">
                       <h1>
-                        Study Beyond The
-                        <strong className="turq_color"> Classroom</strong>
+                        Create a
+                        <strong className="turq_color"> Campaign</strong>
                       </h1>
                       <h4 className="text-muted">
-                        Study any topic, anytime. Choose from thousands
-                        of expert-led courses now.
+                        A creative campaign makes your business reachable
+                        to most of the audience.
                       </h4>
-                      <Link className="btn turquoise-btn btn-lg mt-4" to="/">
+
+                      <Link
+                        className="btn turquoise-btn btn-lg mt-4"
+                        to="/auth/login"
+                      >
                         Get Started
                         <FontAwesomeIcon
                           className="ml-2"
@@ -132,7 +137,7 @@ export class Guest extends PureComponent<any, any> {
           <section className="course-grid">
             <h2 className="text-center mb-70 section-head">
               One platform for all your
-              <span className="turq_color"> Career</span>
+              <span className="turq_color"> business</span>
               {' '}
               growth
             </h2>
@@ -150,11 +155,11 @@ export class Guest extends PureComponent<any, any> {
                     </div>
                     <div className="course-content">
                       <div className="h4 text-a-d-3">
-                        K12 Classes
+                        Push notification
                       </div>
                       <p className="text-muted mt-2">
-                        Every topic and concept for all boards & curriculums
-                        inclusive  of CBSE, ICSE, REGIONAL & CENTRAL.
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry.
                       </p>
                     </div>
                   </div>
@@ -171,11 +176,11 @@ export class Guest extends PureComponent<any, any> {
                     </div>
                     <div className="course-content">
                       <div className="h4 text-a-d-3">
-                        Competitive Exams
+                        Message Campaign
                       </div>
                       <p className="text-muted mt-2">
-                        Structured Courses, Adaptive Practice, Live Online
-                        Classes, Live Tests & Personalised feedbacks.
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry.
                       </p>
                     </div>
                   </div>
@@ -193,11 +198,11 @@ export class Guest extends PureComponent<any, any> {
 
                     <div className="course-content">
                       <div className="h4 text-a-d-3">
-                        Higher Studies
+                        Message Campaign
                       </div>
                       <p className="text-muted mt-2">
-                        Case Studies, Practical Compilations, Opinion Building,
-                        Leadership Tunnels, Discovery & Conclusions.
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry.
                       </p>
                     </div>
                   </div>
@@ -214,7 +219,7 @@ export class Guest extends PureComponent<any, any> {
                     </div>
                     <div className="course-content">
                       <div className="h4 text-a-d-3">
-                        Skill Building
+                        Manage all your campaign
                       </div>
                       <p className="text-muted mt-2">
                         Training & Support helping startups volunteer
@@ -230,7 +235,7 @@ export class Guest extends PureComponent<any, any> {
           <section className="lms-grid">
             <h2 className="text-center mb-70 section-head">
               Best
-              <span className="turq_color"> Learning Platform</span>
+              <span className="turq_color"> Campaign Platform</span>
               {' '}
               for growth
             </h2>
@@ -249,9 +254,10 @@ export class Guest extends PureComponent<any, any> {
                       </span>
 
                       <div className="lms_text ml-3">
-                        <h4>Live online batches.</h4>
+                        <h4>Message campaign</h4>
                         <p>
-                          Join live batches & get access to online classrooms.
+                          Lorem Ipsum is simply dummy text of the
+                          printing and typesetting industry.
                         </p>
                       </div>
                     </div>
@@ -266,8 +272,11 @@ export class Guest extends PureComponent<any, any> {
                       </span>
 
                       <div className="lms_text ml-3">
-                        <h4>Expert-led structured courses.</h4>
-                        <p>Learn On Your Schedule. Study any topic, anytime.</p>
+                        <h4>Email campaign</h4>
+                        <p>
+                          Lorem Ipsum is simply dummy text of the printing
+                          and typesetting industry.
+                        </p>
                       </div>
                     </div>
 
@@ -281,10 +290,10 @@ export class Guest extends PureComponent<any, any> {
                       </span>
 
                       <div className="lms_text ml-3">
-                        <h4>Adaptive Practice.</h4>
+                        <h4>Message Campaign</h4>
                         <p>
-                          Do practice specific to your needs & skills, and
-                          clear your concepts.
+                          Lorem Ipsum is simply dummy text of the printing
+                          and typesetting industry.
                         </p>
                       </div>
                     </div>
@@ -299,10 +308,10 @@ export class Guest extends PureComponent<any, any> {
                       </span>
 
                       <div className="lms_text ml-3">
-                        <h4>All India Level Live Tests.</h4>
+                        <h4>Simple management.</h4>
                         <p>
-                          Appear in all India level exams & assess your level
-                          with others.
+                          Lorem Ipsum is simply dummy text of the
+                          printing and typesetting industry.
                         </p>
                       </div>
                     </div>
@@ -317,7 +326,7 @@ export class Guest extends PureComponent<any, any> {
                       </span>
 
                       <div className="lms_text ml-3">
-                        <h4>24/7 Doubt Clearing Help Centre.</h4>
+                        <h4>24/7 Support.</h4>
                         <p>
                           Give a direct call or chat with our experts to
                           enhance your understanding.
@@ -326,6 +335,7 @@ export class Guest extends PureComponent<any, any> {
                     </div>
                   </div>
                 </div>
+
                 <div
                   className="col-lg-5 cl-md-12 col-12 d-flex align-items-center"
                 >
@@ -338,7 +348,10 @@ export class Guest extends PureComponent<any, any> {
               </div>
 
               <div className="mt-3 text-center">
-                <Link className="btn turquoise-btn btn-lg mt-4" to="/">
+                <Link
+                  className="btn turquoise-btn btn-lg mt-4"
+                  to="/auth/login"
+                >
                   Get Started
                   <FontAwesomeIcon
                     className="ml-2"

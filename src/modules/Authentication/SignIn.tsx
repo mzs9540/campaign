@@ -25,7 +25,7 @@ function normalizePhone(value, previousValue) {
 }
 
 const phoneRegex = () => new RegExp('^(0|[1-9][0-9]{9})$');
-const validatePhoneNumber = (value) => value && !phoneRegex().test(value);
+const validatePhoneNumber = (value) => !!value && !phoneRegex().test(value);
 const required = (value) => !value;
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
@@ -130,7 +130,7 @@ class SignIn extends React.Component<InjectedFormProps<Props> & Props, State> {
                       src={eduLogo}
                       alt="logo"
                     />
-                    <span className="turq_color">LMS</span>
+                    <span className="turq_color">CMS</span>
                   </a>
                 </h2>
                 <div className="form-group mb-4">
@@ -166,7 +166,10 @@ class SignIn extends React.Component<InjectedFormProps<Props> & Props, State> {
                     type="button"
                     className="btn turquoise-btn"
                     onClick={() => this.sendOtp()}
-                    disabled={validatePhoneNumber(this.props.phone)}
+                    disabled={
+                      !this.props.phone
+                      || validatePhoneNumber(this.props.phone)
+                    }
                   >
                     Login
                     <FontAwesomeIcon

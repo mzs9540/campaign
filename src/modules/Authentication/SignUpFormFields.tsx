@@ -24,7 +24,7 @@ export function SignUpFormFields(props: {
             src={eduLogo}
             alt="logo"
           />
-          <span className="turq_color">LMS</span>
+          <span className="turq_color">CMS</span>
         </a>
       </h2>
 

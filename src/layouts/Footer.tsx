@@ -58,9 +58,6 @@ export function Footer() {
                     </Link>
                   </li>
                   <li className="mb-2">
-                    <Link to="/#">Live Chat</Link>
-                  </li>
-                  <li className="mb-2">
                     <Link to="/#">Mail Us</Link>
                   </li>
                   <li className="mb-2">
@@ -73,19 +70,16 @@ export function Footer() {
               </div>
 
               <div className="col-lg-3 col-md-3 col-6">
-                <h6>Products</h6>
+                <h6>Campaigns</h6>
                 <ul className="list-unstyled">
                   <li className="mb-2">
-                    <Link to="/courses">Courses</Link>
+                    <Link to="/courses">Message</Link>
                   </li>
                   <li className="mb-2">
-                    <Link to="/#">Online Batches</Link>
+                    <Link to="/#">Email</Link>
                   </li>
                   <li className="mb-2">
-                    <Link to="/#">All India Live Test</Link>
-                  </li>
-                  <li className="">
-                    <Link to="/#">Mock Interviews</Link>
+                    <Link to="/#">Push notifications</Link>
                   </li>
                 </ul>
               </div>
@@ -93,7 +87,6 @@ export function Footer() {
           </div>
           <div className="col-12 col-md-3">
             <div className="footer-logo">
-              {/* <h6>Registered Office</h6> */}
               <div className="d-flex align-items-center h2 mb-2">
                 <img
                   className="h-40p w-40p mr-2"
@@ -103,7 +96,7 @@ export function Footer() {
                 <span
                   className=" d-block turq_color h2 mb-0 font-weight-600"
                 >
-                  LMS
+                  Campaigns
                 </span>
               </div>
               <div className="w-100">

@@ -1,7 +1,7 @@
 import { PureComponent } from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 
-import { SearchBar, ProfileDropdown, SearchBarMobile } from 'shared';
+import { ProfileDropdown } from 'shared';
 
 type Props = {
   stickyHeaderClassName: any,
@@ -32,15 +32,7 @@ export class Header extends PureComponent<Props, any> {
             <div
               className="ml-auto d-flex align-items-center justify-content-end"
             >
-              <Nav className="search-bar align-items-center flex-fill">
-                <Nav.Link className="py-0 w-30">
-                  <SearchBar placeholder="Search..." />
-                </Nav.Link>
-              </Nav>
-
               <Nav className="d-flex align-items-center">
-                <SearchBarMobile />
-
                 <ProfileDropdown />
               </Nav>
             </div>
