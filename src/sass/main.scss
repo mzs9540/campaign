@@ -1,0 +1,8 @@
+// Do not change import order.
+
+@import 'src/sass/variables';
+@import 'src/sass/mixins';
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+@import 'node_modules/bootstrap/scss/bootstrap';
+@import '../sass/base.scss';

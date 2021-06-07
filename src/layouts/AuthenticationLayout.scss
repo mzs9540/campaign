@@ -1,0 +1,138 @@
+@import 'src/sass/variables';
+@import 'src/sass/mixins';
+
+.user-credentials-wrap {
+  > .row {
+    margin: 0;
+  }
+
+  .login-col {
+    @include d-flex-center;
+
+    flex-direction: column;
+  }
+
+  .login-col-left {
+    background-color: $grey_color;
+
+    .social-icons {
+      li {
+        a {
+          border-color: $dark-black-color;
+          color: $dark-black-color;
+
+          &:hover {
+            color: $white_color;
+            border-color: $turquoise-color;
+          }
+        }
+      }
+    }
+  }
+
+  .login-carousel {
+    .carousel-item {
+      img {
+        height: 240px;
+        object-fit: contain;
+      }
+    }
+
+    .carousel-indicators {
+      margin-bottom: 0;
+      bottom: -40px !important;
+
+      li {
+        width: 6px;
+        height: 6px;
+        margin: 0 7px;
+        background-color: $white_color;
+        border: 1px solid #b5b8bd;
+        opacity: 1;
+        border-radius: 100%;
+
+        &.active {
+          background-color: #d6d6d6;
+        }
+      }
+    }
+
+  }
+
+  .login-col-right {
+    z-index: 0;
+
+    form {
+      max-width: 600px;
+      width: 100%;
+      margin: 0 auto;
+
+      .form-control {
+        background-color: transparent;
+      }
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      right: -55px;
+      bottom: 0;
+      background: url('/images/study.svg') no-repeat;
+      background-size: cover;
+      width: 550px;
+      height: 535px;
+      z-index: -1;
+      opacity: 0.2;
+    }
+  }
+}
+
+@media (max-width: 1099px) {
+  .user-credentials-wrap {
+    overflow-x: hidden;
+
+    .login-col-right {
+      padding: 0 15px;
+
+      &:after {
+        width: 350px;
+        height: 335px;
+        opacity: 0.1;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 310px) and (max-width: 767px) {
+  .user-credentials-wrap {
+    .btn {
+      white-space: nowrap;
+    }
+
+    .login-col-left {
+      display: none;
+    }
+
+    .login-col-right {
+      padding: 0;
+
+      .signup-form {
+        padding: 0 0 20px 0;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .user-credentials-wrap {
+    .login-col-left {
+      .navbar-brand {
+        margin: 0 0 0 0 !important;
+
+        > span {
+          display: none;
+        }
+      }
+    }
+  }
+}

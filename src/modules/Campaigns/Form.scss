@@ -1,0 +1,68 @@
+@import 'src/sass/variables';
+@import 'src/sass/mixins';
+
+.campaigns-create-wrap {
+  .campaigns-form {
+    z-index: 0 !important;
+    position: relative;
+
+    form {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+
+      .form-control {
+        background-color: transparent;
+      }
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      right: -150px;
+      top: 0;
+      background: url('/images/email_campaign.svg') no-repeat;
+      background-size: cover;
+      width: 550px;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.2;
+    }
+  }
+}
+
+@media (max-width: 1099px) {
+  .campaigns-create-wrap {
+    overflow-x: hidden;
+
+    .campaigns-form {
+      padding: 0 15px;
+
+      &:after {
+        width: 350px;
+        height: 335px;
+        opacity: 0.1;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 310px) and (max-width: 767px) {
+  .campaigns-create-wrap {
+    .btn {
+      white-space: nowrap;
+    }
+
+    .campaigns-form {
+      padding: 0;
+      width: 100%;
+      height: 100%;
+
+      &:after {
+        width: 100%;
+        height: 100%;
+        opacity: 0.1;
+      }
+    }
+  }
+}

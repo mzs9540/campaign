@@ -1,0 +1,2 @@
+export const USER = 'AUTHENTICATION/USER';
+export const SIGN_OUT = 'AUTHENTICATION/SIGN_OUT';

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="512" height="512" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g>
+<g xmlns="http://www.w3.org/2000/svg">
+	<path d="M286,0h-60c-41.422,0-75,34.578-75,76v45h98.789l30-30H361V76C361,34.578,327.422,0,286,0z" fill="#ffffff" data-original="#000000" style=""/>
+	<polygon points="229.686,512 282.314,512 273.981,406 238.019,406  " fill="#ffffff" data-original="#000000" style=""/>
+	<path d="M451,512v-76c0-41.895-29.81-78.252-70.884-86.47L301,333.704v55.706L313.019,512H361v-76h30v76H451z" fill="#ffffff" data-original="#000000" style=""/>
+	<path d="M61,436v76h60v-76h30v76h47.981L211,389.411v-55.706l-79.116,15.826C90.81,357.748,61,394.105,61,436z" fill="#ffffff" data-original="#000000" style=""/>
+	<rect x="241" y="346" width="30" height="30" fill="#ffffff" data-original="#000000" style=""/>
+	<path d="M151,196c0,57.99,47.01,105,105,105s105-47.01,105-105v-75h-68.789l-30,30H151V196z M241,196c0,8.276,6.724,15,15,15   s15-6.734,15-15.01h30c0,24.814-20.186,45.01-45,45.01s-45-20.186-45-45H241z" fill="#ffffff" data-original="#000000" style=""/>
+</g>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</g></svg>

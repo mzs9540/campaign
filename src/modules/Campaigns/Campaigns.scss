@@ -1,0 +1,13 @@
+@import 'src/sass/variables';
+@import 'src/sass/mixins';
+
+
+.all-campaigns-wrap {
+  .campaigns-header-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+}

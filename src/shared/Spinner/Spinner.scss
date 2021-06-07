@@ -1,0 +1,49 @@
+.ispinner {
+  position: relative;
+  width: 28px;
+  height: 28px;
+
+  .ispinner-blade {
+    position: absolute;
+    top: 37%;
+    left: 44.5%;
+    width: 10%;
+    height: 25%;
+    background-color: #8e8e93;
+    border-radius: 50% / 20%;
+    animation: iSpinnerBlade 1s linear infinite;
+    will-change: opacity;
+
+    @for $i from 1 through 12 {
+      &:nth-child(#{$i}) {
+        transform: rotate(#{360deg / 12 * $i}) translate(0, -150%);
+        animation-delay: 1s / 12 * ($i - 21);
+      }
+    }
+  }
+
+  &.lg {
+    width: 60px;
+    height: 60px;
+
+    .ispinner-blade {
+      width: 100% / 35 * 3;
+      height: 100% / 35 * 10;
+      border-radius: 50% / 16.67%;
+    }
+  }
+
+  @keyframes iSpinnerBlade {
+    0% {
+      opacity: 0.85;
+    }
+
+    50% {
+      opacity: 0.25;
+    }
+
+    100% {
+      opacity: 0.25;
+    }
+  }
+}

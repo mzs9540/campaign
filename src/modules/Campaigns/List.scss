@@ -1,0 +1,15 @@
+@import 'src/sass/variables';
+@import 'src/sass/mixins';
+
+
+.campaigns-list-wrap {
+  background-color: $grey_color;
+  position: relative;
+
+  .campaigns-row {
+    display: flex;
+    margin-top: 20px;
+    gap: 25px;
+    flex-wrap: wrap;
+  }
+}
