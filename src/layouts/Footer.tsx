@@ -151,29 +151,7 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
-            <span>© 2021 LMS Technologies Pvt, Ltd.</span>
-            <ul className="list-unstyled d-flex social-icons mb-0">
-              <li>
-                <Link to="/">
-                  <FontAwesomeIcon icon={['fab', 'facebook-f']} />
-                </Link>
-              </li>
-              <li>
-                <Link to="/">
-                  <FontAwesomeIcon icon={['fab', 'youtube']} />
-                </Link>
-              </li>
-              <li>
-                <Link to="/">
-                  <FontAwesomeIcon icon={['fab', 'instagram']} />
-                </Link>
-              </li>
-              <li>
-                <Link to="/">
-                  <FontAwesomeIcon icon={['fab', 'linkedin-in']} />
-                </Link>
-              </li>
-            </ul>
+            <span>© 2021 CMS Technologies Pvt, Ltd.</span>
           </div>
         </div>
       </div>

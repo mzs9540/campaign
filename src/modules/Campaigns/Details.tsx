@@ -214,6 +214,11 @@ class Details extends PureComponent<Props, State> {
             <div className="font-weight-bolder mb-3">
               {campaign?.createdBy.name}
             </div>
+
+            <div>
+              <b>Created at: </b>
+              {utcToLocalDateTime(campaign?.createdAt || null)}
+            </div>
           </div>
 
         </Show>
