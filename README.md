@@ -14,4 +14,7 @@
 3. We can also change status (`Pause/Active`) from details page.
 4. We can filter campaigns on all campaigns page(`/campaigns`).
 
-***NOTE***: Test cases are not written yet.
+***NOTE***: 
+1. Test cases are not written yet.
+2. Browser's local storage is used, for the data which is stored and 
+   manipulated at backend.
