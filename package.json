@@ -1,7 +1,7 @@
 {
-  "name": "dizvik-web",
+  "name": "campaign",
   "version": "0.1.0",
-  "author": "Dizvik Technologies",
+  "author": "Campaign Management",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
