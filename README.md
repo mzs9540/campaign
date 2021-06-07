@@ -12,4 +12,6 @@
 2. For Update/Delete go to campaign details page by 
    clicking on `View` button. Update/Delete campaign from `Menu` dropdown.
 3. We can also change status (`Pause/Active`) from details page.
-4. We can filter campaigns on all campaigns page(`/campaigns`)
+4. We can filter campaigns on all campaigns page(`/campaigns`).
+
+***NOTE***: Test cases are not written yet.
